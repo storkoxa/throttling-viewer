@@ -4,7 +4,7 @@ const LSet = require('./limit_set.js')
 
 
 
-const port = 3000
+const port = process.env.PORT || 5000;
 
 const app = require('express')();
 const http = require('http').Server(app);
