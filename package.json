@@ -1,0 +1,21 @@
+{
+  "name": "throttling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "socket.io": "^3.1.2"
+  }
+}
