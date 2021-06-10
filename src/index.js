@@ -2,11 +2,13 @@ const path = require('path');
 const Throttling = require('./throttling.js')
 const LSet = require('./limit_set.js')
 
-
-
 const port = process.env.PORT || 5000;
 
-const app = require('express')();
+
+const express = require('express');
+const app = express();
+app.use(express.json());
+
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
@@ -25,10 +27,21 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/post', (req, res) => {
+app.all(['/ms', '/ms/:path*'], (req, res) => {
   requests.add(Date.now())
-  res.json("OK")
+  res.json(JSON.parse(`{ "responses": [ { "id": "${req.body?.requests?.[0]?.id}", "status": 201, "headers": { "Cache-Control": "private", "Content-Type": "application/json" }, "body": { "id": "id" } } ] }`));
 })
+
+app.all(['/google', '/google/:path*'], (req, res) => {
+  requests.add(Date.now())
+  res.json(JSON.parse(` {"id": "${req.body?.id}"}`))
+})
+
+app.all('/post/:path', (req, res) => {
+  requests.add(Date.now())
+  res.json(`{OK}`)
+})
+
 
 
 http.listen(port, () => {
