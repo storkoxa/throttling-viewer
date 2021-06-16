@@ -1,5 +1,5 @@
 class LSet {
-  constructor({ limit = 500, oldest = 60000, every = 1000 } = {}) {
+  constructor({ limit = 1500, oldest = 60000, every = 1000 } = {}) {
     this.every = every;
     this.oldest = oldest;
     this.limit = limit;
